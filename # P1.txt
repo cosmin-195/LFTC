@@ -1,0 +1,58 @@
+# P1
+
+init a=1;
+init b=2;
+
+verify a > b {
+    log(a);
+}
+otherwise {
+     log(b);
+}
+
+
+
+# P2
+
+init i=3;
+init flag = true;
+init n = read();
+
+verify not n mod 2{
+    log("not prime");
+    shortcircuit();
+} 
+
+while i**2 < n {
+    verify n mod i {
+        log("not prime");
+        flag = untrue;
+        escape;
+    }
+}
+
+verify flag eq true{
+    log("prime");
+}
+
+
+
+# P3
+
+init arr=[1,2,3];
+init s=0;
+
+for init c in arr{
+    s = s + c;
+}
+log(s);
+
+
+
+
+# P1 err
+
+init s = 111111111111111111111111111111111111111111111111111111111111111;
+init a = 他;
+
+log(s+a);
