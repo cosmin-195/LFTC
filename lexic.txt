@@ -8,7 +8,7 @@ c. Decimal digits (0-9);
 
 - separators [ ] { } ; space
 
-- reserved words: init verify otherwise escape true untrue while for func
+- reserved words: init verify otherwise escape true untrue while for func in
 
 integer:
 
@@ -17,8 +17,6 @@ integer:
 <digitseq>::= <digit>|<digit><digitseq>
 <digit>::=0|<nonzerodigit>
 <nonzerodigit>::=1...
-
-
 
 
  <letter> ::= "a" | "b" | ... | "Z"
@@ -31,8 +29,9 @@ integer:
  <char> ::= '<letter>|<digit>|<specialchar>'
  <string> ::= <char>|<string>
  <conststring>::="<string>"
+ <const>::=<conststring>|<int>
 
- <func> ::= func() | func(<args>)
+ <func> ::= func <identifier>() | func <identifier>(<args>)
  <args>::=<arg>|<arg><args>
  <arg>::=<identifier>|<int>|<string>|<char>
 
