@@ -16,10 +16,10 @@ integer:
 <nonzero>::=<nonzerodigit>|-<nonzerodigit>|<nonzerodigit><digitseq>|-<nonzerodigit><digitseq>
 <digitseq>::= <digit>|<digit><digitseq>
 <digit>::=0|<nonzerodigit>
-<nonzerodigit>::=1...
+<nonzerodigit>::= 1|2|...|9
 
 
- <letter> ::= "a" | "b" | ... | "Z"
+ <letter> ::= "a" | "b" | ... | "z" | "A" | ... | "Z"
  <specialchar> ::= "_"
  <identifier> ::= <letter>|<ls><ldsequence>
 

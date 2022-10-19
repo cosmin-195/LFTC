@@ -1,11 +1,11 @@
-<cmpstmt> ::= <stmt> | <stmt> ; <cmpstmt>
+<cmpstmt> ::= <stmt> | <stmt> ";" <cmpstmt>
 <stmt> ::= <assignStmt> | <structStmt> | <funcDeclStmt>
-<assignStmt> ::= <identifier>=<expression>
+<assignStmt> ::= <identifier> "=" <expression>
 // no IO statements, they are instead functions part of the standard library
 <funcDeclStmt> ::=  <func>{<cmpstmt>}
 
-<expression> ::= <expression> "+" <term> | <term> | <expression> - <term> | <logicExpression> | <initializer>
-<term> ::= <term> * <factor> | <factor> | <term> / <factor>
+<expression> ::= <expression> "+" <term> | <term> | <expression> "-" <term> | <logicExpression> | <initializer>
+<term> ::= <term> * <factor> | <factor> | <term> "/" <factor>
 <factor> ::= ( <expression> ) | <identifier> | <const> | <functioncall>
 <functioncall> ::=  <identifier>() | <identifier>(<expressionSeq>)
 <expressionSeq> ::=  <expression> | <expression>,<expressionSeq>  //this is for function parameters only so I can have f(5+3, a/2, g(a+b))
@@ -13,7 +13,7 @@
 <initializer> ::= <emptyInitializer> | <copyInitializer>
 <emptyInitializer> ::= {} | []
 <copyInitializer> ::= {<dictInitializer>} | [<listInitializer>]
-<dictInitializer> ::= <keyValue> | <keyValue> , <dictInitializer>
+<dictInitializer> ::= <keyValue> | <keyValue> "," <dictInitializer>
 <keyValue> ::= <string> : <expression>
 <listInitializer> ::= <expression> | <expression> , <listInitializer>
 
@@ -24,7 +24,7 @@
 <relation> ::= <|<=|eq|>|>=
 <iterStmt> ::= FOR <identifier> in <expression>
 
-<logicExpression> ::= NOT <logicExpression> |  <logicExpression> or <logicExpression> | <logicExpression> and <logicExpression> | expression
+<logicExpression> ::= "NOT" <logicExpression> |  <logicExpression> "or" <logicExpression> | <logicExpression> "and" <logicExpression> | expression
 
 
 
