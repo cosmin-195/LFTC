@@ -1,0 +1,9 @@
+init a="hello world"; init b=2;
+init b=2;
+
+verify a > b {
+    log(a);
+}
+otherwise {
+     log(b);
+}
