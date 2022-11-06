@@ -31,7 +31,7 @@ class Scanner:
                         continue
                     if line[p2] in self.separators and line[p2] == '"':
                         # todo instead call regex:
-                        #  if None ? exception : check start index to be same as p2 -> move p2 to end index
+                        #  if None ? exception : check start index (not needed) to be same as p2 -> move p2 to end index
                         match = match_string(line[p2:])
                         if match is None:
                             # todo write to file
