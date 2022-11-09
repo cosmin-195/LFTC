@@ -1,5 +1,6 @@
 https://github.com/cosmin-195/LFTC
 
+symbol table
 data structure: hashtable with chaining
 add(value) - takes a value and returns a tuple (bucket, position in list)
 lookup(bucket,position in list) - returns a value, if it finds it, or None otherwise
@@ -7,3 +8,6 @@ hash (value) - if hashing an integer, returns the integer modulo capacity
              - for strings it starts from 5381, loops through the characters while multiplying the value with
               33 and adding the ascii value ( and applies the modulo at the end)
              - was found to have good results in practice
+
+pif:
+list of tuples (token, position_in_symbol_table)
