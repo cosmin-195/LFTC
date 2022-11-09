@@ -3,11 +3,12 @@ import re
 import symbolTable as sb
 from enum import Enum
 
+
 class Scanner:
 
     def __init__(self, file):
         self.file = file
-        self.operators = ['+', '-', '*', '/', '<', '<=', '=', '>=', 'eq', 'mod', 'not']
+        self.operators = ['+', '-', '*', '/', '<', '<=', '=', '>=', '>', 'eq', 'mod', 'not']
         self.keywords = ['init', 'verify', 'otherwise', 'escape', 'true', 'untrue', 'while', 'for', 'func', 'in']
         self.separators = [']', '[', '{', '}', ';', ' ', '(', ")", ","]
         self.pif = []
@@ -19,6 +20,28 @@ class Scanner:
         self.__tokenize(self.file)
         for token in self.tokens:
             self.__classify(token)
+
+    def serialize_tables(self):
+        with open("pif.out", 'w') as file:
+            for entry in self.pif:
+                file.write(entry[0] + " (" + str(entry[1][0]) + "," + str(entry[1][1]) + ")")
+                file.write("\n")
+        with open("st.out", 'w') as file:
+            k = 0
+            for entry in self.st:
+                if len(entry):
+                    for x in entry:
+                        file.write(str(k) + " " + str(x))
+                        file.write("\n")
+                k += 1
+        with open("constSt.out", 'w') as file:
+            k = 0
+            for entry in self.constSt:
+                if len(entry):
+                    for x in entry:
+                        file.write(str(k) + " " + str(x))
+                        file.write("\n")
+                k += 1
 
     def __tokenize(self, filename):
         with open(filename) as file:
@@ -69,7 +92,7 @@ class Scanner:
                         if p2 - p1 > 0:
                             self.tokens.append((line[p1:p2], line_nr))
                         if p2 + 1 < len(line) and ((line[p2] == '<' or line[p2 + 1] == ">") and line[p2 + 1] == "="):
-                            self.tokens.append(line[p2:p2 + 2])
+                            self.tokens.append((line[p2:p2 + 2], line_nr))
                             p2 += 2
                             p1 = p2
                         elif p2 + 1 < len(line) and line[p2] == "-":
@@ -80,11 +103,11 @@ class Scanner:
                                 p1 = p2
                                 continue
                             else:
-                                self.tokens.append(line[p2])
+                                self.tokens.append((line[p2], line_nr))
                                 p2 += 1
                                 p1 = p2
                         else:
-                            self.tokens.append(line[p2])
+                            self.tokens.append((line[p2], line_nr))
                             p2 += 1
                             p1 = p2
                     else:
@@ -96,8 +119,18 @@ class Scanner:
 
                 line = file.readline()
 
-    def __classify(self, token):
-        pass
+    def __classify(self, tk):
+        token, line = tk
+        if token in self.separators or token in self.operators or token in self.keywords:
+            self.pif.append((token, (-1, -1)))
+        elif Matcher.match_string(token) is not None:
+            self.pif.append((token, self.constSt.add(token)))
+        elif Matcher.match_int(token) is not None:
+            self.pif.append((token, self.constSt.add(token)))
+        elif Matcher.match_identifier(token) is not None:
+            self.pif.append((token, self.st.add(token)))
+        else:
+            raise Exception('Error! token:' + token + " - line: " + str(line))
 
 
 class Matcher:
@@ -128,3 +161,4 @@ scan = Scanner("p1")
 scan.scan()
 for t in scan.tokens:
     print(t[0])
+scan.serialize_tables()

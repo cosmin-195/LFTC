@@ -29,3 +29,6 @@ class SymbolTable:
             return None
         else:
             return self.__table[key][val]
+
+    def __iter__(self):
+        return self.__table.__iter__()
