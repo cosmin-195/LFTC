@@ -91,7 +91,7 @@ class Scanner:
                     elif line[p2] in self.operators:
                         if p2 - p1 > 0:
                             self.tokens.append((line[p1:p2], line_nr))
-                        if p2 + 1 < len(line) and ((line[p2] == '<' or line[p2 + 1] == ">") and line[p2 + 1] == "="):
+                        if p2 + 1 < len(line) and ((line[p2] == '<' or line[p2] == ">") and line[p2 + 1] == "="):
                             self.tokens.append((line[p2:p2 + 2], line_nr))
                             p2 += 2
                             p1 = p2

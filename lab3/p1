@@ -1,7 +1,7 @@
-init a="hello world"; init b=2;
+init a="hello world"; init a=2;
 init b=-2;
 
-verify a > b {
+verify a >= b {
     log(a);
 }
 otherwise {
