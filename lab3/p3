@@ -1,0 +1,7 @@
+init arr=[1,2,3];
+init s=0;
+
+for init c in arr{
+    s = s + c;
+}
+log(s);

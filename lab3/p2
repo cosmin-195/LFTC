@@ -1,0 +1,20 @@
+init i=3;
+init flag = true;
+init n = read();
+
+verify not n mod 2{
+    log("not prime");
+    shortcircuit();
+}
+
+while i**2 < n {
+    verify n mod i {
+        log("not prime");
+        flag = untrue;
+        escape;
+    }
+}
+
+verify flag eq true{
+    log("prime");
+}
