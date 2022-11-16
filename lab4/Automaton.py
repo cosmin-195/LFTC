@@ -5,7 +5,9 @@ class Automaton:
         self.states = {}
         self.initialState = None
         self.finalStates = {}
+        self.transitions = []
         self.__read_from_file()
+
 
     def is_accepted(self, token):
         state = self.initialState
@@ -40,8 +42,25 @@ class Automaton:
                 source = split[0]
                 target = split[1]
                 action = split[2]
+                self.transitions.append((source, target, action))
                 self.states[source].add_next_state((self.states[target], action))
                 transition = file.readline().strip()
+
+    def menu(self):
+        while True:
+            inp = input("1.States\n2.Initial state\n3.Final state\n4.Transitions\n")
+            if inp == "1":
+                for state in self.states:
+                    print(self.states[state].data)
+            elif inp == "2":
+                print(self.initialState.data)
+            elif inp == "3":
+                for state in self.finalStates:
+                    print(self.states[state].data)
+            elif inp == "4":
+                for transition in self.transitions:
+                    print(transition[0] + " " + transition[1] + " " + transition[2])
+            print()
 
 
 class State:
@@ -59,4 +78,5 @@ class State:
 
 
 a = Automaton('automaton1')
+a.menu()
 print(a.is_accepted('230000000001'))

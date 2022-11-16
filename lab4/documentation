@@ -1,0 +1,20 @@
+Automaton:
+filename: String - file from which to read the automaton
+states: Map of StateId ->  State - the states of the automaton
+initialState: State - the initial state
+finalStates: Map of StateId ->  State - the final states of the automaton
+transitions: List of (State, State, String) - list of transitions, tuple formed source state, target state, action
+
+is_accepted(token) - returns true if the token is accepted by the FA - parses the token, and tries to find a transition from the current state
+to a next state where the action is the current token. If it cannot find a next state, or if the state where it finished is not final, returns false, otherwise returns true.
+__read_from_file() - reads the automaton
+menu() - displays a menu that displays various information
+
+
+
+<automaton> ::= <state> <list_states> <list_states> <transitions>
+<state> ::= "A" | "B" | ... | "Z"
+<list_states> ::= <state> | <state> <final_states>
+<transitions> ::= <transition> | <transition> | <trainsitions>
+<transition> ::= <state> <state> <action>
+<action> ::= "1" | "2" | ... | "a" | "b" | ...
