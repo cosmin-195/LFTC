@@ -8,7 +8,17 @@ class Automaton:
         self.__read_from_file()
 
     def is_accepted(self, token):
-        pass
+        state = self.initialState
+        for char in token:
+            found = False
+            for transition in state.next_states:
+                if transition[1] == char:
+                    found = True
+                    state = transition[0]
+                    break
+            if not found:
+                return False
+        return state.final
 
     def __read_from_file(self):
         with open(self.filename) as file:
@@ -49,4 +59,4 @@ class State:
 
 
 a = Automaton('automaton1')
-print(a)
+print(a.is_accepted('230000000001'))
