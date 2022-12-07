@@ -17,12 +17,16 @@ class Grammar:
             line = f.readline()
             while line:
                 split = line.split("->")
-                left = line[0].strip()
-                right = line[1].strip().split("|")
+                left = split[0].strip()
+                right = split[1].strip().split("|")
                 if left in self.P:
-                    state = self.P[left]
-                    # self.P[[]]
-                    self.contextFree = False
+                    self.P[left] += right
                 else:
-                    self.P[left] = right
+                    self.P[left] = [] + right
                 line = f.readline()
+
+    def isCFG(self):
+        for key in self.P:
+            if (len(key)) > 1:
+                return False
+        return True
