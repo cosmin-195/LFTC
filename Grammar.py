@@ -30,3 +30,9 @@ class Grammar:
             if (len(key)) > 1:
                 return False
         return True
+
+
+
+g = Grammar()
+g.read_from_file("exempleCFG")
+print(g)
