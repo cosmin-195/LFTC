@@ -6,6 +6,7 @@ class Parser:
 
     def __init__(self, grammar: Grammar):
         self.grammar = grammar
+        self.table = []
 
     def closure(self, S):
         result = []
@@ -29,6 +30,26 @@ class Parser:
                                 result.append(nonterminal + " -> ." + production)
                                 notDone = False
         return result
+
+    def parse(self, seq):
+        work_stack = [0]
+        input_stack = seq
+        input_stack_pointer = 0
+        work_stack_pointer = 0
+        output_stack = []
+
+        # pop work stack
+        while True:
+            popped = work_stack[work_stack_pointer]
+            from_input = input_stack[input_stack_pointer]
+            input_stack_pointer = +1
+            action = self.table.pop()[0]
+            if action == 's':
+                next_state = self.table[popped][1][from_input]
+                work_stack.append(action)
+                work_stack.append(next_state)
+            # reduce
+
 
 
 g = Grammar.Grammar()
