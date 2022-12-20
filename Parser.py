@@ -41,9 +41,8 @@ class Parser:
                 rightSideOfDot = rightSideOfDot.strip()
                 if len(rightSideOfDot) == 0:
                     continue
-                rightSymbol = rightSideOfDot[0]
-                if rightSymbol == x:
-                    newItem = left.strip() + "->" + leftSideOfDot.strip() + x + "." + rightSideOfDot[1:]
+                if rightSideOfDot.find(x) == 0:
+                    newItem = left.strip() + "->" + leftSideOfDot.strip() + x + "." + rightSideOfDot[len(x):]
                     closureInput.append(newItem)
         return self.closure(closureInput) if len(closureInput) > 0 else []
 
