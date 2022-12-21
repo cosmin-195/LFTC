@@ -36,4 +36,4 @@ class Grammar:
 
 g = Grammar()
 g.read_from_file("exampleCFG")
-print(g)
+print(g.P)
