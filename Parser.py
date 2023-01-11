@@ -59,7 +59,7 @@ class Parser:
                     closureInput.append(newItem)
         return self.closure(closureInput) if len(closureInput) > 0 else []
 
-    # "! UNREADABLE GARBAGE !"
+    # <!> UNREADABLE GARBAGE <!>
     def canonical_collection(self):
         start_item = self.grammar.S + "_PRIME->." + self.grammar.S
         c = []
@@ -143,6 +143,7 @@ class Parser:
                 work_stack = work_stack[:len(work_stack) - len(right * 2)]
                 work_stack.append(left)
                 work_stack.append(self.table.row_values[work_stack[-2], work_stack[-1]])
+                output_stack.append(self.productions.index(prod))
             if action == 'a':
                 print('good job')
                 return output_stack
@@ -157,5 +158,6 @@ for i in p.canonical_collection():
     print(i)
 print(p.table.row_headers)
 print(p.table.row_values)
+print(p.parse("abbc"))
 # print(p.closure(["Z->.S"]))
 # print(p.goto(["Z->.S"], "S"))
