@@ -59,6 +59,7 @@ class Parser:
                     closureInput.append(newItem)
         return self.closure(closureInput) if len(closureInput) > 0 else []
 
+    # "! UNREADABLE GARBAGE !"
     def canonical_collection(self):
         start_item = self.grammar.S + "_PRIME->." + self.grammar.S
         c = []
@@ -94,19 +95,22 @@ class Parser:
                                 # its an accept
                                 if idx == -1:  # only create row if it doesn't exist
                                     self.table.row_headers.append('a')
-                                self.table.row_values[(j, symbol)] = len(self.table.row_headers) - 1
-
+                                    self.table.row_values[(j, symbol)] = len(self.table.row_headers) - 1
+                                else:
+                                    self.table.row_values[(j, symbol)] = idx
                             else:
                                 #  reduce
                                 if idx == -1:
                                     self.table.row_headers.append("r" + str(self.productions.index(result[0][:-1])))
-                                self.table.row_values[(j, symbol)] = len(
-                                    self.table.row_headers) - 1  # only works if i just added row; do for other case
+                                    self.table.row_values[(j, symbol)] = len(
+                                        self.table.row_headers) - 1
+                                else:
+                                    self.table.row_values[(j, symbol)] = idx
                         else:
                             # shift
                             if idx == -1:  # only create row if it doesn't exist
                                 self.table.row_headers.append('s')
-                                self.table.row_values[(j, symbol)] = idx
+                                self.table.row_values[(j, symbol)] = len(self.table.row_headers) - 1
                             else:
                                 self.table.row_values[(j, symbol)] = idx
         return c
