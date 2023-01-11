@@ -94,16 +94,21 @@ class Parser:
                                 # its an accept
                                 if idx == -1:  # only create row if it doesn't exist
                                     self.table.row_headers.append('a')
+                                self.table.row_values[(j, symbol)] = len(self.table.row_headers) - 1
+
                             else:
                                 #  reduce
                                 if idx == -1:
                                     self.table.row_headers.append("r" + str(self.productions.index(result[0][:-1])))
+                                self.table.row_values[(j, symbol)] = len(
+                                    self.table.row_headers) - 1  # only works if i just added row; do for other case
                         else:
                             # shift
                             if idx == -1:  # only create row if it doesn't exist
                                 self.table.row_headers.append('s')
-                            # else:
-                            self.table.row_values[(j, symbol)] = idx
+                                self.table.row_values[(j, symbol)] = idx
+                            else:
+                                self.table.row_values[(j, symbol)] = idx
         return c
 
     def __prepare_productions(self):
@@ -136,7 +141,7 @@ class Parser:
                 work_stack.append(self.table.row_values[work_stack[-2], work_stack[-1]])
             if action == 'a':
                 print('good job')
-                break
+                return output_stack
 
 
 g = Grammar.Grammar()
