@@ -1,0 +1,24 @@
+P N S D A Q X F I T V W O R K E Y J L B G
+( ) [ ] { } ; space + - * / % = == != < <= >= > def defArray defConst integer char string condition else repeatCondition screenWrite keyboardRead
+P
+P -> N
+N -> S | S;N
+S -> D | Q | X
+D -> F | <A>
+F -> defTI | defTIV
+A -> defArrayTI | defArrayTIW
+T -> integer | char | string
+W -> [O]
+O -> V | VO
+V -> constant_number | char | string
+Q -> R |
+R -> I=E | I=I | I=string
+E -> E+Y | E-Y | Y
+Y -> Y*J | Y/J | Y%J | J
+J -> (E) | I | constant_number
+K -> keyboardRead( I ) | screenWrite( I )
+L -> condition(G){S} | condition(G){S}else{S}
+G -> E B E
+B -> < | <= | == | != | >= | >
+X -> L
+I -> a | b | c | d | f | g | h | i | j

@@ -1,0 +1,26 @@
+def integer a
+def integer b
+def integer c
+
+keyboardRead(a)
+keyboardRead(b)
+keyboardRead(c)
+
+condition (a >= b) {
+        d = a
+        e = b
+}
+    else {
+        d = b
+        e = a
+    }
+
+    condition (d < c) {
+        d = c
+    }
+    condition (e > c) {
+        e = c
+    }
+
+    screenWrite(d)
+    screenWrite(e)

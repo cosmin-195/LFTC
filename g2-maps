@@ -1,0 +1,28 @@
+program P
+statement S
+declaration_statement D
+array_declaration A
+simple_statement Q
+compound_statement X
+simple_declaration F
+identifier I
+type T
+initial_value V
+initial_array_value W
+list_of_initial_values O
+assign_statement R
+IO_statement K
+expression E
+term Y
+factor J
+conditional_statement L
+relation B
+repeat_conditional_statement U
+statement_list N
+##GO_PROGRAM goprogam
+##STOP_PROGRAM stopprogram
+
+
+
+
+

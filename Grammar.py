@@ -34,6 +34,6 @@ class Grammar:
         return True
 
 
-g = Grammar()
-g.read_from_file("exampleCFG")
-print(g.P)
+# g = Grammar()
+# g.read_from_file("exampleCFG")
+# print(g.P)

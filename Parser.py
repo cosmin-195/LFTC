@@ -119,6 +119,7 @@ class Parser:
         for prod in self.grammar.P:
             for right_side in self.grammar.P[prod]:
                 self.productions.append(prod + "->" + right_side)
+        print("")
 
     def parse(self, seq):
         work_stack = [0]
@@ -151,13 +152,16 @@ class Parser:
 
 g = Grammar.Grammar()
 # g.read_from_file("exampleCFG")
-g.read_from_file("grammarFromS9")
+g.read_from_file("g2.txt")
 p = Parser(g)
-# print(p.closure(["E_PRIME->.E"]))
 for i in p.canonical_collection():
     print(i)
 print(p.table.row_headers)
 print(p.table.row_values)
-print(p.parse("abbc"))
+
+with open("sample") as file:
+    program = file.read()
+    print(p.parse(program))
+# print(p.parse())
 # print(p.closure(["Z->.S"]))
 # print(p.goto(["Z->.S"], "S"))
